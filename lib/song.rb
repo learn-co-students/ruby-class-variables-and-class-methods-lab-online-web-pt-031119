@@ -31,23 +31,37 @@ class Song
   
   def self.genre_count
     hash = {} 
-    count = 0
+    
     @@genres.each do |genre|
     # if more than one genre add the count by 1
       # hash[genre]=count
-      if genre == genre
-        count += 1
-      binding.pry
-      elsif genre == 1
-        count = 1
+      if hash[genre]
+        # binding.pry
+        hash[genre] += 1
+      else 
+        hash[genre] = 1
       end
-      hash[genre] = count
     end
     hash
   end 
   
+  
+  
+  
+  
+  
+  
   def self.artist_count
+    hash = {}
     
+    @@artists.each do |genre|
+      if hash[genre]
+        hash[genre] += 1 
+      else 
+        hash[genre] = 1 
+      end 
+    end
+      hash
   end 
   
 end 
