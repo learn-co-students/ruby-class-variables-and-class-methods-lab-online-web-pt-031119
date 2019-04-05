@@ -7,14 +7,8 @@ class Song
   @@artists = []
   def initialize(name, artist, genre)
     @name = name
-    @artist = artist
-    @genre = genre
-    if @@artists.include?(artist) != true
-      @@artists << artist
-    end
-    if @@genres.include?(genre) != true
-      @@genres << genre
-    end
+    @@artists << @artist = artist
+    @@genres << @genre = genre
     @@count += 1
   end
 
@@ -23,18 +17,35 @@ class Song
   end
 
   def self.genres
-    @@genres
+    @@genres.uniq
   end
 
   def self.artists
-    @@artists
+    @@artists.uniq
   end
 
   def self.genre_count
-    @@genre_count = Hash[@@genres.collect {|x,count| [x,count]}]
+    @@genre_count = {}
+    #Hash[@@genres.uniq.collect {|x| [x, 1]}]
+    @@genres.each do |genre|
+      if @@genre_count.include?(genre) == true
+         @@genre_count[genre] += 1
+       else
+         @@genre_count[genre] = 1
+      end
+    end
+    @@genre_count
   end
 
   def self.artist_count
-
+    @@artist_count = {}
+    @@artists.each do |artist|
+      if @@artist_count.include?(artist) == true
+        @@artist_count[artist] += 1
+      else
+        @@artist_count[artist] = 1
+      end
+    end
+    @@artist_count
   end
 end
